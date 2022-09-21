@@ -4,7 +4,7 @@ const sequelize = require('./db')
 const models = require('./models/models')
 const cors = require('cors')
 const fileUpload = require('express-fileupload')
-const tapeRouter = require('./LentaPatentov/routes/index')
+const tapeRouter = require('../Reserv/LentaPatentov/routes/index')
 const serverRouter = require ('./routes/index')
 const errorHandler = require ('./middleware/ErrorHandlingMiddleware')
 const path = require('path')
@@ -17,7 +17,7 @@ app.use(express.json())
 app.use(express.static(path.resolve(__dirname, 'static')))
 app.use(fileUpload({}))
 app.use('/api', serverRouter)
-app.use('/patent_tape', tapeRouter)
+//app.use('/patent_tape', tapeRouter) лента патентов в разработке
 
 // Обработка ошибок, последний Middleware
 app.use(errorHandler)

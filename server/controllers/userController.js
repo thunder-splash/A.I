@@ -47,7 +47,7 @@ class UserController {
     }
 
     async delete (req, res, next) {
-        const ToBeRemoved = req.body.email
+        const ToBeRemoved = req.body.name
         const user = await User.destroy({where: {email: ToBeRemoved}})
         if (!user){
             return next(ApiError.badRequest('Пользователь с такой почтой не найден'))

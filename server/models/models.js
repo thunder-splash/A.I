@@ -10,6 +10,7 @@ const User = sequelize.define('user',{
 
 const Preferences = sequelize.define('preferences',{
     id: {type: INTEGER, primaryKey:true, autoIncrement:true},
+    userId:{type:INTEGER},
     name: {type: STRING, unique: true, allowNull: false},
     type: {type: STRING, unique: true},
     title: {type: STRING, allowNull: false},

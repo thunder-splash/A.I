@@ -21,9 +21,8 @@ class UserController {
         if(candidate){
             return next(ApiError.badRequest('Пользователь с таким почтовым адесом уже существует'))
         }
-        const hashPassword = await  bcrypt.hash(password, 5)
-        const user = await  User.create({email, role,  password: hashPassword})
-        const pref = await Preferences.create({userId: user.id})
+        const hashPassword = await bcrypt.hash(password, 5)
+        const user = await User.create({email, role,  password: hashPassword})
         const token = generateJwt(user.id, user.email, user.role)
         return res.json({token})
     }
@@ -48,12 +47,17 @@ class UserController {
     }
 
     async delete (req, res, next) {
-        const ToBeRemoved = req.body.name
-        const user = await User.destroy({where: {name: ToBeRemoved}})
+        const ToBeRemoved = req.body.email
+        const user = await User.destroy({where: {email: ToBeRemoved}})
         if (!user){
-            return next(ApiError.badRequest('Пользователь с таким именем не найден'))
+            return next(ApiError.badRequest('Пользователь с такой почтой не найден'))
         }
         return res.json({message: 'Пользователь удалён успешно'})
+    }
+
+    async seethemall (req, res) {
+        const isee = await User.findAll()
+        return res.json(isee)
     }
 }
 

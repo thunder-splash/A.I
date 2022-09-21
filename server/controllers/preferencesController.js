@@ -3,8 +3,8 @@ const ApiError = require('../error/ApiError')
 
 class PreferencesController {
     async create (req, res) {
-        const {name, type, description, info} = req.body
-        const pref = await Preferences.create({name, type, description, info})
+        const {name, type, title, description, userId} = req.body
+        const pref = await Preferences.create({name, type, title, description, userId})
         return res.json(pref)
     }
 

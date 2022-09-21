@@ -21,7 +21,6 @@ const Weight = sequelize.define('weight',{
     id: {type: INTEGER, primaryKey:true, autoIncrement:true},
     name: {type: STRING, unique: true, allowNull: false},
     value: {type: INTEGER, allowNull: false, defaultValue: 0.5},
-
 })
 
 User.hasOne(Preferences)
